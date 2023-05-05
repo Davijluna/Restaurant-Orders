@@ -1,5 +1,5 @@
 from src.analyze_log import (func_quantid_never, func_never_was)
-
+from collections import Counter
 
 class TrackOrders:
     # aqui deve expor a quantidade de estoque
@@ -23,7 +23,8 @@ class TrackOrders:
         return func_never_was(customer, self.orders)
 
     def get_busiest_day(self):
-        pass
+        days = [item[2] for item in self.orders]
+        return Counter(days).most_common()[0][0]
 
     def get_least_busy_day(self):
         pass
